@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Type;
+use App\Models\Technology;
+use App\Models\Project;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -38,5 +40,14 @@ class ProjectFactory extends Factory
             'is_published' => fake()->boolean(),
             'type_id' => Arr::random($types_ids)
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function(Project $project){
+            $technology_ids = Technology::pluck('id')->toArray();
+            $project->technologies = array_filter($technology_ids, fn() => rand(0,1));
+            $project->technologies()->attach($project->technologies);
+        });
     }
 }
