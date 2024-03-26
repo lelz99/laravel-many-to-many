@@ -27,7 +27,8 @@ class StoreProjectRequest extends FormRequest
             'preview_project' => 'nullable|mimes:jpeg,jpg,png',
             'end_date' => 'nullable|date',
             'is_published' => 'nullable',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|exists:technologies,id'
         ];
     }
 
@@ -42,7 +43,8 @@ class StoreProjectRequest extends FormRequest
             'description.min' => 'La descrizione deve avere minimo :min caratteri',
             'description.max' => 'La descrizione deve avere massimo :max caratteri',
             'end_date.date' => 'Deve essere una data valida',
-            'type_id.exists' => 'Tipo non valido'
+            'type_id.exists' => 'Tipo non valido',
+            'technologies.exists' => 'Tecnologia non valida'
         ];
     }
 }

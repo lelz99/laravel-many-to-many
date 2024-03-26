@@ -5,9 +5,9 @@
   <div class="card mb-3">
     <div class="row g-0">
       <div class="card-header">
-        <h2 class="card-title">{{$project->title}}</h2>
+        <h2 class="card-title mb-1">{{$project->title}}</h2>
         {{-- Rivedere Stile --}}
-        <p class="fw-bold"> Tipo: <span class="fw-normal"> @if($project->type) {{$project->type?->label}} @else Nessuno @endif </span> </p>
+        <p class="fw-bold mb-0"> Tipo: <span class="fw-normal"> @if($project->type) {{$project->type?->label}} @else Nessuno @endif </span> </p>
       </div>
       <div class="col-md-4">
         <img src="{{asset('storage/' . $project->preview_project)}}" class="img-fluid h-100 w-100" alt="{{$project->title}}">
@@ -28,7 +28,7 @@
                 @endif
               </div>
             </div>
-            <div class="col-2 row row-cols-2">
+            <div class="col-md-2 col-12 row row-cols-md-2">
               @foreach($project->technologies as $technology)
               <i class="{{"$technology->icon $technology->color"}} fa-2x"></i>
               @endforeach
