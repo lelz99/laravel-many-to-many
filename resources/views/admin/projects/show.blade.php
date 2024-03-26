@@ -6,13 +6,8 @@
     <div class="row g-0">
       <div class="card-header">
         <h2 class="card-title">{{$project->title}}</h2>
-        <p>Tipo:
-          <span class="badge"  style=" background-color: @if($project->type) {{$project->type?->color}} @else #808080 @endif">
-            @if($project->type) {{$project->type?->label}}
-            @else Nessuno
-            @endif
-          </span>
-        </p>
+        {{-- Rivedere Stile --}}
+        <p class="fw-bold"> Tipo: <span class="fw-normal"> @if($project->type) {{$project->type?->label}} @else Nessuno @endif </span> </p>
       </div>
       <div class="col-md-4">
         <img src="{{asset('storage/' . $project->preview_project)}}" class="img-fluid h-100 w-100" alt="{{$project->title}}">
@@ -20,15 +15,24 @@
       <div class="col-md-8 d-flex flex-column">
         <div class="card-body">
           <p class="card-text">{{$project->description}}</p>
-          <ul class="list-unstyled ps-0">
-            <li><strong>Data fine Progetto:</strong> {{$project->end_date}}</li>
-            <li><strong>Data Creazione:</strong> {{$project->created_at}}</li>
-            <li><strong>Ultima Modifica:</strong> {{$project->updated_at}}</li>
-          </ul>
-          <div class="card-text"><strong>Pubblicato:</strong>
-            @if($project->is_published) <i class="fa-solid fa-circle-check text-success"></i>
-            @else <i class="fa-solid fa-circle-xmark text-danger"></i> 
-            @endif
+          <div class="row">
+            <div class="col-10">
+              <ul class="list-unstyled">
+                <li><strong>Data fine Progetto:</strong> {{$project->end_date}}</li>
+                <li><strong>Data Creazione:</strong> {{$project->created_at}}</li>
+                <li><strong>Ultima Modifica:</strong> {{$project->updated_at}}</li>
+              </ul>
+              <div class="card-text"><strong>Pubblicato:</strong>
+                @if($project->is_published) <i class="fa-solid fa-circle-check text-success"></i>
+                @else <i class="fa-solid fa-circle-xmark text-danger"></i> 
+                @endif
+              </div>
+            </div>
+            <div class="col-2 row row-cols-2">
+              @foreach($project->technologies as $technology)
+              <i class="{{"$technology->icon $technology->color"}} fa-2x"></i>
+              @endforeach
+            </div>
           </div>
         </div>
         <div class="d-flex justify-content-between p-3">

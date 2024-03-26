@@ -7,6 +7,7 @@
       <th scope="col">Id</th>
       <th scope="col">Nome</th>
       <th scope="col">Tipo</th>
+      <th scope="col">Tecnologie</th>
       <th scope="col">Pubblicato</th>
       <th scope="col">Data Fine Progetto</th>
       <th scope="col">Data Creazione</th>
@@ -22,11 +23,15 @@
       <th scope="row">{{$project->id}}</th>
       <td>{{$project->title}}</td>
       <td>
-        <span class="badge"  style=" background-color: @if($project->type) {{$project->type?->color}} @else #808080 @endif">
-          @if($project->type) {{$project->type?->label}}
-          @else Nessuno
-          @endif
-        </span>
+        <div>
+          {{-- Rivedere Stile --}}
+          @if($project->type) {{$project->type?->label}} @else Nessuno @endif
+        </div>
+      </td>
+      <td>
+        @foreach($project->technologies as $technology)
+        <i class="{{"$technology->icon $technology->color"}} fa-2x"></i>
+        @endforeach
       </td>
       <td>
         @if($project->is_published) <i class="fa-solid fa-circle-check text-success ms-4"></i>
@@ -49,7 +54,7 @@
       </td>
     </tr>
     @empty
-    <td colspan="7" class="text-center">
+    <td colspan="9" class="text-center">
       <h2>Non ci sono progetti</h2>
     </td>
     @endforelse
