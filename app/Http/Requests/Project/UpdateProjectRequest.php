@@ -47,7 +47,7 @@ class UpdateProjectRequest extends FormRequest
             'description.max' => 'La descrizione deve avere massimo :max caratteri',
             'end_date.date' => 'Deve essere una data valida',
             'type_id.exists' => 'Tipo non valido',
-            'exists.technologies' => 'Tecnologia non valida'
+            'technologies.exists' => 'Tecnologia non valida'
         ];
     }
 }

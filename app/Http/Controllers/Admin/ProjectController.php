@@ -86,7 +86,8 @@ class ProjectController extends Controller
         $project->save();
 
         if(Arr::exists($data, 'technologies')) $project->technologies()->sync($data['technologies']);
-        elseif(Arr::exists($data, 'technologies') && $project->has('technologies')) $project->technologies()->detach();
+        elseif(!Arr::exists($data, 'technologies') && $project->has('technologies')) $project->technologies()->detach();
+        
 
         return to_route('admin.projects.show', $project)->with('message', "{$project->title} modificato con successo");
     }
